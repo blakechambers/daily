@@ -121,7 +121,7 @@ gulp.task('haml:dist', function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('usemin', ['addbowerdeps'], function() {
+gulp.task('usemin', ['haml:dist', 'styles:dist', 'addbowerdeps'], function() {
   return gulp.src('dist/*.html')
     .pipe(usemin({
       assetsDir: 'dist',
@@ -198,7 +198,7 @@ gulp.task('cleanup:deps', ['usemin'], function() {
 })
 
 // Build the project for distribution
-gulp.task('build', ['jshint', 'browserify:dist', 'haml:dist', 'styles:dist', 'fonts', 'extras', 'cleanup:deps']);
+gulp.task('build', ['jshint', 'fonts', 'extras', 'cleanup:deps']);
 
 // Clean all and build from scratch
 gulp.task('default', ['clean'], function () {

@@ -20,7 +20,6 @@ This is originally inspired by [ES6 Marionette](https://github.com/abiee/es6-mar
 
 ## Todo
 
-- [ ] errors on build for some reason around usemin.
 - [ ] add jadeify for templating.
 - [ ] env should reference backbone/marionette/etc from bower, not npm. remove npm fe dependencies.  possibly use debowerify transform.
 - [ ] test font includes.
@@ -29,21 +28,33 @@ This is originally inspired by [ES6 Marionette](https://github.com/abiee/es6-mar
 
 ## Setup
 
-    $ npm install
-    $ bower install
-    $ gulp serve
+Make sure you have node version 0.12.x.  Usemin and some other libs throw errors without it.
 
-Do not forget to install globally gulp if not installed yet.
+~~~
+$ npm install
+$ bower install
+$ gulp serve
+~~~
+
+Do not forget to install globally gulp if not installed yet.  And in case of emergency:
+
+~~~
+$ npm cache clear && bower cache clean && rm -rf node_modules bower_components && npm install && bower install
+~~~
 
 ## Build
 
 If you want to build the project run.
 
-    $ gulp build
+~~~
+$ gulp build
+~~~
 
 It will compile the project and put the result under `dist` directory. You can run the compiled project also.
 
-    $ gulp serve:dist
+~~~
+$ gulp serve:dist
+~~~
 
 ## Licence
 
