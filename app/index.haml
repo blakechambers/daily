@@ -1,0 +1,32 @@
+!!! 5
+%html{lang: "en", class: "no-js"}
+  %head
+    %meta{charset: "utf-8"}
+    %title Testing
+    %meta{content: "", name: "description"}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
+    %link{href: "/favicon.ico", rel: "shortcut icon"}
+    %link{href: "/apple-touch-icon.png", rel: "apple-touch-icon"}
+
+    / build:css assets/app.css
+    %link{href: "/bower_components/foundation/css/foundation.css", rel: "stylesheet"}
+    %link{href: "/styles/main.css", rel: "stylesheet"}
+    / endbuild
+
+    / build:moderizr assets/modernizr.js
+    %script{src: "/bower_components/modernizr/modernizr.js" }
+    / endbuild
+  %body
+    .row
+      .large-12.columns
+        %h1 page
+    .row
+      .large-6.columns
+        %p#demo
+      .large-6.columns
+
+    / build:js assets/app.js
+    %script{src: "/bower_components/jquery/dist/jquery.min.js" }
+    %script{src: "/bower_components/foundation/js/foundation.min.js" }
+    %script{src: "scripts/env.js"}
+    / endbuild
