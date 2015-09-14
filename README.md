@@ -20,8 +20,6 @@ This is originally inspired by [ES6 Marionette](https://github.com/abiee/es6-mar
 
 ## Todo
 
-- [ ] add jadeify for templating.
-- [x] add debowerify
 - [ ] add [https://github.com/taptapship/wiredep](https://github.com/taptapship/wiredep) for index file deps.
 - [ ] test font includes.
 - [ ] autoprefixer.
