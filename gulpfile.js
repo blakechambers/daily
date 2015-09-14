@@ -3,7 +3,7 @@
 
 var gulp           = require('gulp');
 var $              = require('gulp-load-plugins')();
-
+var debowerify     = require('debowerify');
 var bower          = require('gulp-bower');
 var browserSync    = require('browser-sync');
 var browserify     = require('browserify');
@@ -30,7 +30,7 @@ gulp.task('browserify', function () {
     entries: 'app/scripts/env.coffee',
     debug: true,
     // defining transforms here will avoid crashing your stream
-    transform: [coffeeify, hamlcify]
+    transform: [coffeeify, debowerify, hamlcify]
   });
 
   bundler = watchify(bundler);
@@ -58,7 +58,7 @@ gulp.task('browserify:dist', function () {
   var bundler = browserify({
     entries: 'app/scripts/env.coffee',
     // defining transforms here will avoid crashing your stream
-    transform: [coffeeify, hamlcify]
+    transform: [coffeeify, debowerify, hamlcify]
   });
 
   return bundler.bundle()

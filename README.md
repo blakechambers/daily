@@ -21,7 +21,8 @@ This is originally inspired by [ES6 Marionette](https://github.com/abiee/es6-mar
 ## Todo
 
 - [ ] add jadeify for templating.
-- [ ] env should reference backbone/marionette/etc from bower, not npm. remove npm fe dependencies.  possibly use debowerify transform.
+- [x] add debowerify
+- [ ] add [https://github.com/taptapship/wiredep](https://github.com/taptapship/wiredep) for index file deps.
 - [ ] test font includes.
 - [ ] autoprefixer.
 - [ ] consider gulp-include for managing the file tree of various apps.
