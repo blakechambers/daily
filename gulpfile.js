@@ -3,22 +3,16 @@
 
 var gulp           = require('gulp');
 var $              = require('gulp-load-plugins')();
-var debowerify     = require('debowerify');
-var bower          = require('gulp-bower');
+var minifyCss      = require('gulp-minify-css');
+
 var browserSync    = require('browser-sync');
 var browserify     = require('browserify');
 var buffer         = require('vinyl-buffer');
 var coffeeify      = require('coffeeify');
+var debowerify     = require('debowerify');
 var del            = require('del');
-var haml           = require('gulp-haml');
 var hamlcify       = require('haml-coffee-browserify');
-var minifyCss      = require('gulp-minify-css');
-var minifyHtml     = require('gulp-minify-html');
-var rev            = require('gulp-rev');
-var sass           = require('gulp-sass');
 var source         = require('vinyl-source-stream');
-var uglify         = require('gulp-uglify');
-var usemin         = require('gulp-usemin');
 var watchify       = require('watchify');
 
 var reload         = browserSync.reload;
@@ -94,7 +88,7 @@ gulp.task('fonts', function () {
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
     .pipe($.sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe($.sass().on('error', $.sass.logError))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
     .pipe(reload({ stream: true }));
@@ -103,7 +97,7 @@ gulp.task('styles', function () {
 gulp.task('styles:dist', function () {
   return gulp.src('app/styles/main.scss')
     .pipe($.sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe($.sass().on('error', $.sass.logError))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('dist/styles'))
     .pipe(reload({ stream: true }));
@@ -111,23 +105,23 @@ gulp.task('styles:dist', function () {
 
 gulp.task('haml', function () {
   return gulp.src('app/*.haml')
-    .pipe(haml())
+    .pipe($.haml())
     .pipe(gulp.dest('./.tmp'));
 });
 
 gulp.task('haml:dist', function () {
   return gulp.src('app/*.haml')
-    .pipe(haml())
+    .pipe($.haml())
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('usemin', ['haml:dist', 'styles:dist', 'addbowerdeps'], function() {
+gulp.task('usemin', ['haml:dist', 'styles:dist', 'browserify:dist', 'addbowerdeps'], function() {
   return gulp.src('dist/*.html')
-    .pipe(usemin({
+    .pipe($.usemin({
       assetsDir: 'dist',
-      css:       [minifyCss, 'concat', rev],
-      moderizr:  [uglify],
-      js:        [uglify, 'concat', rev]
+      css:       [minifyCss, 'concat', $.rev],
+      moderizr:  [$.uglify],
+      js:        [$.uglify, 'concat', $.rev]
     }))
     .pipe(gulp.dest('dist/'))
 });
@@ -185,7 +179,7 @@ gulp.task('serve:dist', function() {
 });
 
 gulp.task('addbowerdeps', function() {
-  return bower().pipe(gulp.dest('dist/bower_components/'))
+  return $.bower().pipe(gulp.dest('dist/bower_components/'))
 });
 
 gulp.task('cleanup:deps', ['usemin'], function() {
