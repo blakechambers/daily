@@ -3,7 +3,6 @@
 
 var gulp           = require('gulp');
 var $              = require('gulp-load-plugins')();
-var minifyCss      = require('gulp-minify-css');
 
 var browserSync    = require('browser-sync');
 var browserify     = require('browserify');
@@ -115,12 +114,13 @@ gulp.task('haml:dist', function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('usemin', ['haml:dist', 'styles:dist', 'browserify:dist', 'addbowerdeps'], function() {
+gulp.task('usemin', ['haml:dist', 'styles:dist', 'browserify:dist'], function() {
   return gulp.src('dist/*.html')
+    .pipe($.replace('/bower_components/', '../bower_components/'))
     .pipe($.usemin({
       assetsDir: 'dist',
-      css:       [minifyCss, 'concat', $.rev],
-      moderizr:  [$.uglify],
+      css:       [$.csso,   'concat', $.rev],
+      inlinejs:  [$.uglify],
       js:        [$.uglify, 'concat', $.rev]
     }))
     .pipe(gulp.dest('dist/'))
@@ -159,6 +159,7 @@ gulp.task('serve', ['haml', 'styles', 'browserify'], function () {
 
   gulp.watch([
     'app/scripts/**/*.coffee',
+    'app/scripts/**/*.hamlc',
     'app/images/**/*',
     './.tmp/scripts/**/*.js',
     './.tmp/*.html'
@@ -178,13 +179,13 @@ gulp.task('serve:dist', function() {
   });
 });
 
-gulp.task('addbowerdeps', function() {
-  return $.bower().pipe(gulp.dest('dist/bower_components/'))
-});
+// gulp.task('addbowerdeps', function() {
+//   return $.bower().pipe(gulp.dest('dist/bower_components/'))
+// });
 
 gulp.task('cleanup:deps', ['usemin'], function() {
   return del([
-    'dist/bower_components/**',
+    // 'dist/bower_components/**',
     'dist/scripts/**',
     'dist/styles/**',
     'dist/*.haml'

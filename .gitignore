@@ -5,3 +5,4 @@ dist
 .tmp
 pids
 log
+.DS_Store
