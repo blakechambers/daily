@@ -6,10 +6,11 @@ class Controller extends App.Controllers.Base
   initialize: ->
     updates = App.request "entities:updates"
 
-    @layoutView = @getLayoutView()
+    @layoutView = @getLayoutView(updates)
     @show @layoutView
 
-  getLayoutView: ->
-    new View()
+  getLayoutView: (updates)->
+    new View
+      collection: updates
 
 module.exports = Controller

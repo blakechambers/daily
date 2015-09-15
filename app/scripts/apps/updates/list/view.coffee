@@ -1,24 +1,42 @@
 layoutTemplate = require './templates/layout'
+itemTemplate   = require './templates/item'
+
+class UpdateView extends Marionette.ItemView
+  tagName:   "li"
+  className: "update"
+  template:  itemTemplate
+
+  modelEvents:
+    "change:visited" : "render"
+
+  events:
+    "click @ui.headline" : "markVisited"
+
+  ui:
+    headline : ".headline"
+
+  markVisited: ->
+    @model.set "visited", true
+
+class UpdatesView extends Marionette.CollectionView
+  childView:  UpdateView
+  className: "updates"
+  tagName:   "ol"
 
 class Layout extends Marionette.LayoutView
   template: layoutTemplate
 
-  events:
-    'click a': 'toLink'
+  regions:
+    updatesRegion: ".updates-container"
 
-  toLink: (e) ->
-    console.log "testtest"
-    return if (e.metaKey || e.ctrlKey || e.shiftKey)
-    e.preventDefault()
-    location = new URI()
-    e.currentTarget
-    uri  = new URI(e.currentTarget.href)
+  initialize: (options) ->
+    @updatesView = @getUpdatesView(options.collection)
 
-    if location.hostname() == uri.hostname()
-      path = uri.pathname().replace(/^\//, '')
-      path = "#{path}?#{uri.query()}" if uri.query()
-      App.navigate path
-    else
-      window.open(uri, '_blank')
+  onShow: ->
+    @updatesRegion.show @updatesView
+
+  getUpdatesView: (collection) ->
+    new UpdatesView
+      collection: collection
 
 module.exports = Layout

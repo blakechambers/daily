@@ -2,7 +2,7 @@ ListController = require './list/controller'
 
 class Router extends Marionette.AppRouter
     appRoutes:
-      ''   : 'list'
+      ''     : 'list'
 
   API =
     list: ->

@@ -1,7 +1,1 @@
-%h4
-  Hello from Marionette
-  = Math.random()
-%p
-  This text is
-  %strong processed with Marionette. 
-  If you can see this text then you have installed the app successfully.
+.updates-container

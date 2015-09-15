@@ -19,7 +19,10 @@
   %body
     .row
       .large-12.columns
-        %h1 page
+        %h1
+          inside
+          %span
+            redact
     .row
       .large-12.columns#main-region
 
@@ -41,6 +44,7 @@
     %script{src: "/bower_components/foundation/js/foundation/foundation.slider.js" }
     %script{src: "/bower_components/foundation/js/foundation/foundation.tab.js" }
     %script{src: "/bower_components/foundation/js/foundation/foundation.tooltip.js" }
+    %script{src: "/bower_components/moment/moment.js"}
 
     %script{src: "scripts/env.js"}
     / endbuild

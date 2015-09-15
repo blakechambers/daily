@@ -1,0 +1,11 @@
+- visitedClassName = if @visited then "visited" else ""
+%div{class: visitedClassName}
+  %a.blurb{href: @source_uri, target: "_blank", title: "#{@entities.headline.display_text} — #{@sources[0].display_name}"}
+    .headline= @entities.headline.display_text
+    .source= "(#{@sources[0].display_name})"
+  .sub-line
+    .score= @score
+    points
+    –
+    %abbr.timestamp{title: moment(@created_at).format('LLLL') }
+      = moment(Date.parse(@created_at)).fromNow()

@@ -18,6 +18,9 @@ Cocktail.entendables = [
 
 Cocktail.patch(Backbone)
 
+Marionette.Behaviors.behaviorsLookup = ->
+  window.Behaviors
+
 # expose to window
 window.Backbone   = Backbone
 window.Marionette = Marionette
@@ -25,11 +28,25 @@ window._          = _
 window.URI        = URI
 window.App        = require "./app"
 
-# load models
-require './entities/updates'
+##################### load behaviors ###########################################
 
-# load sub apps
-UpdatesApp = require './apps/updates/updates_app'
+Behaviors = {
+  ToLink : require 'behaviors/to_link'
+}
+
+window.Behaviors = Behaviors
+Marionette.Behaviors.behaviorsLookup = ->
+  window.Behaviors
+
+##################### load entities ############################################
+
+require 'entities/updates'
+
+##################### load sub apps ############################################
+
+require 'apps/updates/updates_app'
+
+################################################################################
 
 $(document).ready ->
   App.start()
