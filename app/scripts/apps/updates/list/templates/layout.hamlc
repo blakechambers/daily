@@ -1,3 +1,5 @@
-%h4 Hello from Marionette
+%h4
+  Hello from Marionette
+  = Math.random()
 %p
   This text is processed with Marionette. If you can see this text then you have installed the app successfully.

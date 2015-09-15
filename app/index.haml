@@ -9,7 +9,7 @@
     %link{href: "/apple-touch-icon.png", rel: "apple-touch-icon"}
 
     / build:css assets/app.css
-    %link{href: "/bower_components/foundation/css/foundation.css", rel: "stylesheet"}
+    %link{href: "/styles/foundation_env.css", rel: "stylesheet"}
     %link{href: "/styles/main.css", rel: "stylesheet"}
     / endbuild
 
@@ -21,12 +21,26 @@
       .large-12.columns
         %h1 page
     .row
-      .large-6.columns
-        %p#demo
-      .large-6.columns
+      .large-12.columns#main-region
 
     / build:js assets/app.js
     %script{src: "/bower_components/jquery/dist/jquery.min.js" }
-    %script{src: "/bower_components/foundation/js/foundation.min.js" }
+    %script{src: "/bower_components/fastclick/lib/fastclick.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.abide.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.alert.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.clearing.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.dropdown.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.equalizer.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.interchange.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.joyride.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.magellan.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.offcanvas.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.orbit.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.reveal.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.slider.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.tab.js" }
+    %script{src: "/bower_components/foundation/js/foundation/foundation.tooltip.js" }
+
     %script{src: "scripts/env.js"}
     / endbuild

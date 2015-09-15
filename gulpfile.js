@@ -14,6 +14,8 @@ var hamlcify       = require('haml-coffee-browserify');
 var source         = require('vinyl-source-stream');
 var watchify       = require('watchify');
 
+var historyApiFallback = require('connect-history-api-fallback');
+
 var reload         = browserSync.reload;
 
 // Bundle files with browserify
@@ -85,9 +87,11 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('styles', function () {
-  return gulp.src('app/styles/main.scss')
+  return gulp.src(['app/styles/main.scss', "app/styles/foundation_env.scss"])
     .pipe($.sourcemaps.init())
-    .pipe($.sass().on('error', $.sass.logError))
+    .pipe($.sass({
+      includePaths: ['./bower_components/foundation/scss']
+    }).on('error', $.sass.logError))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
     .pipe(reload({ stream: true }));
@@ -153,7 +157,8 @@ gulp.task('serve', ['haml', 'styles', 'browserify'], function () {
       baseDir: ['.tmp', 'app'],
       routes: {
         '/bower_components': 'bower_components'
-      }
+      },
+      middleware: [ historyApiFallback() ]
     }
   });
 
