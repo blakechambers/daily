@@ -1,14 +1,32 @@
-window._          = require 'underscore'
-window.Backbone   = require 'backbone'
-window.Marionette = require 'backbone.marionette'
-window.URI        = require 'URIjs'
+_          = require 'underscore'
+Backbone   = require 'backbone'
+Backbone.$ = window.$
+Marionette = require 'backbone.marionette'
+Cocktail   = require 'cocktail'
+URI        = require 'URIjs'
 
-window.App = require "./app.coffee"
+Cocktail.entendables = [
+  Backbone.Model,
+  Backbone.Collection,
+  Backbone.Router,
+  Backbone.View,
+  Marionette.ItemView,
+  Marionette.Controller,
+  Marionette.CollectionView,
+  Marionette.LayoutView
+]
 
-window.App.Controllers = {}
-window.App.Controllers.Base = require "./lib/controllers/base.coffee"
+Cocktail.patch(Backbone)
 
-UpdatesApp = require './apps/updates/updates_app.coffee'
+# expose to window
+window.Backbone   = Backbone
+window.Marionette = Marionette
+window._          = _
+window.URI        = URI
+window.App        = require "./app"
+
+# load sub apps
+UpdatesApp = require './apps/updates/updates_app'
 
 $(document).ready ->
   App.start()

@@ -1,10 +1,10 @@
-layoutTemplate = require './templates/layout.hamlc'
+layoutTemplate = require './templates/layout'
 
 class Layout extends Marionette.LayoutView
   template: layoutTemplate
 
   events:
-    'click .testtest': 'toLink'
+    'click a': 'toLink'
 
   toLink: (e) ->
     console.log "testtest"

@@ -1,4 +1,4 @@
-View = require './view.coffee'
+View = require './view'
 
 class Controller extends App.Controllers.Base
 

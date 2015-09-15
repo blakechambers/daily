@@ -23,6 +23,13 @@ gulp.task('browserify', function () {
   // set up the browserify instance on a task basis
   var bundler = browserify({
     entries: 'app/scripts/env.coffee',
+    extensions: [
+      ".hamlc",
+      ".haml",
+      ".coffee",
+      ".js",
+      ".json"
+    ],
     debug: true,
     // defining transforms here will avoid crashing your stream
     transform: [coffeeify, debowerify, hamlcify]
@@ -52,6 +59,13 @@ gulp.task('browserify:dist', function () {
   // set up the browserify instance on a task basis
   var bundler = browserify({
     entries: 'app/scripts/env.coffee',
+    extensions: [
+      ".hamlc",
+      ".haml",
+      ".coffee",
+      ".js",
+      ".json"
+    ],
     // defining transforms here will avoid crashing your stream
     transform: [coffeeify, debowerify, hamlcify]
   });
@@ -98,9 +112,11 @@ gulp.task('styles', function () {
 });
 
 gulp.task('styles:dist', function () {
-  return gulp.src('app/styles/main.scss')
+  return gulp.src(['app/styles/main.scss', "app/styles/foundation_env.scss"])
     .pipe($.sourcemaps.init())
-    .pipe($.sass().on('error', $.sass.logError))
+    .pipe($.sass({
+      includePaths: ['./bower_components/foundation/scss']
+    }).on('error', $.sass.logError))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('dist/styles'))
     .pipe(reload({ stream: true }));

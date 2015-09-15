@@ -1,4 +1,4 @@
-ListController = require './list/controller.coffee'
+ListController = require './list/controller'
 
 class Router extends Marionette.AppRouter
     appRoutes:

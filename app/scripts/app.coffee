@@ -1,20 +1,24 @@
 'use strict'
 
-App = new Marionette.Application()
+App = do (Backbone, Marionette) ->
+  App = new Marionette.Application()
 
-App.addRegions
-  flashRegion:             "#flash-container"
-  mainRegion:              "#main-region"
+  App.addRegions
+    flashRegion:             "#flash-container"
+    mainRegion:              "#main-region"
 
-App.reqres.setHandler "default:region", ->
-  App.mainRegion
+  App.reqres.setHandler "default:region", ->
+    App.mainRegion
 
-App.navigate = (route, options = {}) ->
-  # route = "#" + route if route.charAt(0) is "/"
-  Backbone.history.navigate route, options
+  App.navigate = (route, options = {}) ->
+    Backbone.history.navigate route, options
 
-App.on 'start', ->
-  Backbone.history.start
-    pushState: true
+  App.Controllers = require "./lib/controllers"
+
+  App.on 'start', ->
+    Backbone.history.start
+      pushState: true
+
+  App
 
 module.exports = App
