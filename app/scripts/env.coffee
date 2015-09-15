@@ -25,6 +25,9 @@ window._          = _
 window.URI        = URI
 window.App        = require "./app"
 
+# load models
+require './entities/updates'
+
 # load sub apps
 UpdatesApp = require './apps/updates/updates_app'
 

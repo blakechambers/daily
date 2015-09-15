@@ -30,6 +30,7 @@ gulp.task('browserify', function () {
       ".js",
       ".json"
     ],
+    paths: ['app/scripts'],
     debug: true,
     // defining transforms here will avoid crashing your stream
     transform: [coffeeify, debowerify, hamlcify]
@@ -66,6 +67,7 @@ gulp.task('browserify:dist', function () {
       ".js",
       ".json"
     ],
+    paths: ['app/scripts'],
     // defining transforms here will avoid crashing your stream
     transform: [coffeeify, debowerify, hamlcify]
   });
