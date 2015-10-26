@@ -40,11 +40,7 @@ Marionette.Behaviors.behaviorsLookup = ->
 
 ##################### load entities ############################################
 
-require 'entities/updates'
-
 ##################### load sub apps ############################################
-
-require 'apps/updates/updates_app'
 
 ################################################################################
 

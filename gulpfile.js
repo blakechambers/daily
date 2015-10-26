@@ -18,6 +18,34 @@ var historyApiFallback = require('connect-history-api-fallback');
 
 var reload         = browserSync.reload;
 
+var argArray  = process.argv.slice(4)[0];
+var validENVs = ["development", "production"];
+var gulpENV;
+if(validENVs.indexOf(argArray) != -1 ) {
+  gulpENV = argArray;
+} else {
+  gulpENV = "development";
+}
+
+var assets_paths = {
+  styles: [
+            'app/styles/main.scss',
+            "app/styles/foundation_env.scss"
+          ]
+};
+
+var GLOBAL_ENVS = {
+  development: {
+    dest: ".tmp"
+
+  },
+  production: {
+    dest: "dist"
+  }
+};
+
+var genv = GLOBAL_ENVS[gulpENV];
+
 // Bundle files with browserify
 gulp.task('browserify', function () {
   // set up the browserify instance on a task basis
@@ -43,42 +71,42 @@ gulp.task('browserify', function () {
       .on('error', $.util.log)
       .pipe(source('env.js'))
       .pipe(buffer())
+      // .pipe($.if((gulpENV == "production"), $.uglify()))
       .pipe($.sourcemaps.init({loadMaps: true}))
-        // Add transformation tasks to the pipeline here.
         .on('error', $.util.log)
       .pipe($.sourcemaps.write('./'))
-      .pipe(gulp.dest('.tmp/scripts'));
+      .pipe(gulp.dest(genv.dest + '/scripts'));
   }
 
   bundler.on('update', rebundle);
 
   return rebundle();
 });
-
-// Bundle files with browserify for production
-gulp.task('browserify:dist', function () {
-  // set up the browserify instance on a task basis
-  var bundler = browserify({
-    entries: 'app/scripts/env.coffee',
-    extensions: [
-      ".hamlc",
-      ".haml",
-      ".coffee",
-      ".js",
-      ".json"
-    ],
-    paths: ['app/scripts'],
-    // defining transforms here will avoid crashing your stream
-    transform: [coffeeify, debowerify, hamlcify]
-  });
-
-  return bundler.bundle()
-    .on('error', $.util.log)
-    .pipe(source('env.js'))
-    .pipe(buffer())
-    .pipe($.uglify())
-    .pipe(gulp.dest('dist/scripts'));
-});
+//
+// // Bundle files with browserify for production
+// gulp.task('browserify', function () {
+//   // set up the browserify instance on a task basis
+//   var bundler = browserify({
+//     entries: 'app/scripts/env.coffee',
+//     extensions: [
+//       ".hamlc",
+//       ".haml",
+//       ".coffee",
+//       ".js",
+//       ".json"
+//     ],
+//     paths: ['app/scripts'],
+//     // defining transforms here will avoid crashing your stream
+//     transform: [coffeeify, debowerify, hamlcify]
+//   });
+//
+//   return bundler.bundle()
+//     .on('error', $.util.log)
+//     .pipe(source('env.js'))
+//     .pipe(buffer())
+//     .pipe($.if((gulpENV == "production"), $.uglify()))
+//     .pipe(gulp.dest(genv.dest + '/scripts');
+// });
 
 // Lint Javascript
 gulp.task('jshint', function () {
@@ -96,14 +124,23 @@ gulp.task('jshint', function () {
 // Copy web fonts to dist
 gulp.task('fonts', function () {
   return gulp.src([
-    'app/{,styles/}fonts/**/*'
+    'app/fonts/**/*'
   ])
     .pipe($.flatten())
-    .pipe(gulp.dest('dist/fonts'));
+    .pipe(gulp.dest(genv.dest + '/fonts'));
+});
+
+// Copy images to dist
+gulp.task('images', function () {
+  return gulp.src([
+    'app/images/**/*'
+  ])
+    .pipe($.flatten())
+    .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('styles', function () {
-  return gulp.src(['app/styles/main.scss', "app/styles/foundation_env.scss"])
+  return gulp.src(assets_paths.styles)
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       includePaths: ['./bower_components/foundation/scss']
@@ -113,30 +150,13 @@ gulp.task('styles', function () {
     .pipe(reload({ stream: true }));
 });
 
-gulp.task('styles:dist', function () {
-  return gulp.src(['app/styles/main.scss', "app/styles/foundation_env.scss"])
-    .pipe($.sourcemaps.init())
-    .pipe($.sass({
-      includePaths: ['./bower_components/foundation/scss']
-    }).on('error', $.sass.logError))
-    .pipe($.sourcemaps.write())
-    .pipe(gulp.dest('dist/styles'))
-    .pipe(reload({ stream: true }));
-});
-
 gulp.task('haml', function () {
   return gulp.src('app/*.haml')
     .pipe($.haml())
-    .pipe(gulp.dest('./.tmp'));
+    .pipe(gulp.dest(genv.dest));
 });
 
-gulp.task('haml:dist', function () {
-  return gulp.src('app/*.haml')
-    .pipe($.haml())
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('usemin', ['haml:dist', 'styles:dist', 'browserify:dist'], function() {
+gulp.task('usemin', ['haml', 'styles', 'browserify'], function() {
   return gulp.src('dist/*.html')
     .pipe($.replace('/bower_components/', '../bower_components/'))
     .pipe($.usemin({
@@ -145,7 +165,7 @@ gulp.task('usemin', ['haml:dist', 'styles:dist', 'browserify:dist'], function() 
       inlinejs:  [$.uglify],
       js:        [$.uglify, 'concat', $.rev]
     }))
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest(genv.dest));
 });
 
 // Clean output directory and cached images
@@ -161,18 +181,16 @@ gulp.task('extras', function () {
     'app/*.*'
   ], {
     dot: true
-  }).pipe(gulp.dest('dist'));
+  }).pipe(gulp.dest(genv.dest));
 });
 
-gulp.task('serve', ['haml', 'styles', 'browserify'], function () {
+gulp.task('dev', ['haml', 'styles', 'fonts', 'browserify'], function () {
   browserSync({
     notify: false,
-    port: 9000,
-    ui: {
-      port: 9001
-    },
+    port:   9000,
+    ui:     { port: 9001 },
     server: {
-      baseDir: ['.tmp', 'app'],
+      baseDir: [genv.dest, 'app'],
       routes: {
         '/bower_components': 'bower_components'
       },
@@ -181,15 +199,15 @@ gulp.task('serve', ['haml', 'styles', 'browserify'], function () {
   });
 
   gulp.watch([
-    'app/scripts/**/*.coffee',
-    'app/scripts/**/*.hamlc',
     'app/images/**/*',
     './.tmp/scripts/**/*.js',
     './.tmp/*.html'
   ]).on('change', reload);
 
-  gulp.watch('app/*.haml', ['haml']);
-  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/scripts/**/*.coffee', ["browserify"])
+  gulp.watch('app/scripts/**/*.hamlc',  ["browserify"])
+  gulp.watch('app/*.haml', ["haml"]);
+  gulp.watch('app/styles/**/*.scss', ["styles"]);
 });
 
 gulp.task('serve:dist', function() {
@@ -197,26 +215,21 @@ gulp.task('serve:dist', function() {
     notify: false,
     port: 9000,
     server: {
-      baseDir: ['dist']
+      baseDir: [genv.dest]
     }
   });
 });
 
-// gulp.task('addbowerdeps', function() {
-//   return $.bower().pipe(gulp.dest('dist/bower_components/'))
-// });
-
 gulp.task('cleanup:deps', ['usemin'], function() {
   return del([
-    // 'dist/bower_components/**',
-    'dist/scripts/**',
-    'dist/styles/**',
-    'dist/*.haml'
+    genv.dest + '/scripts/**',
+    genv.dest + '/styles/**',
+    genv.dest + '/*.haml'
   ]);
 })
 
 // Build the project for distribution
-gulp.task('build', ['jshint', 'fonts', 'extras', 'cleanup:deps']);
+gulp.task('build', ['jshint', 'fonts', 'images', 'extras', 'cleanup:deps']);
 
 // Clean all and build from scratch
 gulp.task('default', ['clean'], function () {
