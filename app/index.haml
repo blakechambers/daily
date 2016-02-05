@@ -9,41 +9,17 @@
     %link{href: "/apple-touch-icon.png", rel: "apple-touch-icon"}
 
     / build:css assets/app.css
-    %link{href: "/styles/foundation_env.css", rel: "stylesheet"}
-    %link{href: "/styles/main.css", rel: "stylesheet"}
+    %link{href: "/styles/app.css", rel: "stylesheet"}
     / endbuild
 
-    / build:inlinejs
-    %script{src: "/bower_components/modernizr/modernizr.js" }
-    / endbuild
   %body
-    .row
-      .large-12.columns
-        %h1
-          inside
-          %span
-            redact
-    .row
-      .large-12.columns#main-region
+    #canvas-wrap
+      %section#todos
 
     / build:js assets/app.js
     %script{src: "/bower_components/jquery/dist/jquery.min.js" }
     %script{src: "/bower_components/fastclick/lib/fastclick.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.abide.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.alert.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.clearing.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.dropdown.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.equalizer.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.interchange.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.joyride.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.magellan.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.offcanvas.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.orbit.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.reveal.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.slider.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.tab.js" }
-    %script{src: "/bower_components/foundation/js/foundation/foundation.tooltip.js" }
+    %script{src: "/bower_components/foundation-sites/dist/foundation.js" }
     %script{src: "/bower_components/moment/moment.js"}
 
     %script{src: "scripts/env.js"}

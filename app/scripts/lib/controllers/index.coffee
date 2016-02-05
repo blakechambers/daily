@@ -1,4 +1,4 @@
 Controllers =
-  Base: require "./controllers/base"
+  Base: require "./base"
 
 module.exports = Controllers

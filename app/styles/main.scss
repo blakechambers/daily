@@ -1,131 +1,45 @@
 @import "./env";
+@import "./reset";
 @import "./fonts";
 
-$num-columns-large:  3;
-$num-columns-medium: 2;
-$num-columns-small:  1;
+@import "./architecture";
+@import "./typography";
 
-h1 {
-  text-transform: uppercase;
-  font-weight:   bolder;
-  font-size:     1.4rem;
-  margin-top:    $cs * 3;
+.mock-image {
+  height: 180px;
+  width:  180px;
+  background-color: rgba(darken($green, 10%), 0.2);
+  border: darken($green, 10%) 3px dashed;
   margin-bottom: $cs;
-  span {
-    color: $orange;
-  }
 }
 
-.updates-container {
-  -webkit-column-count: $num-columns-small;
-  -moz-column-count:    $num-columns-small;
-  -ms-column-count:     $num-columns-small;
-  -o-column-count:      $num-columns-small;
-  column-count:         $num-columns-small;
-  -webkit-column-gap:   $cs;
-  -moz-column-gap:      $cs;
-  -ms-column-gap:       $cs;
-  -o-column-gap:        $cs;
-  column-gap:           $cs;
+.r-mock-image {
+  @extend .mock-image;
 
-  ol {
-    counter-reset: LIST-ITEMS;
-    margin-left:   0;
+  float: right;
+  margin-left: $cs;
+};
 
-    -webkit-column-fill:  balance;
-    column-fill:          balance;
-    height:               0;
-  }
-}
+.l-mock-image {
+  @extend .mock-image;
 
-.update {
-  -webkit-column-break-inside:  avoid;
-  -moz-column-break-inside:     avoid;
-  column-break-inside:          avoid;
-  // font-family:   $serif;
-  margin-bottom: $cs;
-  display: inline-block;
-  width: 100%;
+  float: left;
+  margin-right: $cs;
+};
 
-  .headline {
-    display: inline;
+@media #{$medium-up} {
+  $offset-factor: 1;
+
+  .r-mock-image {
+    position: relative;
+    right: $cs * -1 * $offset-factor;
+    margin-left: $cs + ($cs * -1 * $offset-factor);
   }
 
-  .blurb {
-    color: $jet;
-
-    &:before {
-      content: counter( LIST-ITEMS ) ". ";
-      counter-increment: LIST-ITEMS;
-      font-weight: 700;
-      letter-spacing: -0.07em;
-    }
-
-    &:visited {
-      color: $iron;
-
-      .source {
-        color: $iron;
-      }
-    }
-
-    &:hover .headline {
-      text-decoration: underline;
-    }
-  }
-
-  .score {
-    display: inline;
-  }
-
-  .source {
-    display: inline;
-    color: $aluminum;
-  }
-
-  .sub-line {
-    font-size: 0.75em;
-    color: $iron;
-  }
-
-  .timestamp {
-    color: inherit;
-  }
-
-}
-
-.visited {
-  .blurb {
-    color: $iron;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-    font-size: 0.8em;
-  }
-
-  .sub-line {
-    display: none;
-  }
-}
-
-@media #{$large-up} {
-  .updates-container {
-    -webkit-column-count: $num-columns-large;
-    -moz-column-count:    $num-columns-large;
-    -ms-column-count:     $num-columns-large;
-    -o-column-count:      $num-columns-large;
-    column-count:         $num-columns-large;
-  }
-}
-
-@media #{$medium-only} {
-  .updates-container {
-    -webkit-column-count: $num-columns-medium;
-    -moz-column-count:    $num-columns-medium;
-    -ms-column-count:     $num-columns-medium;
-    -o-column-count:      $num-columns-medium;
-    column-count:         $num-columns-medium;
+  .l-mock-image {
+    position: relative;
+    float: static;
+    left: $cs * -1 * $offset-factor;
+    margin-right: $cs + ($cs * -1 * $offset-factor);
   }
 }
