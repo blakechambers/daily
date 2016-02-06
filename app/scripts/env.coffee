@@ -1,9 +1,4 @@
-_          = require 'underscore'
-Backbone   = require 'backbone'
 Backbone.$ = window.$
-Marionette = require 'backbone.marionette'
-Cocktail   = require 'cocktail'
-URI        = require 'urijs'
 
 Cocktail.entendables = [
   Backbone.Model,
@@ -43,13 +38,12 @@ require './entities/todos'
 
 ##################### load sub apps ############################################
 
-require './apps/tasks'
+# require './apps/tasks'
 
-################################################################################
+##################### start some things ########################################
 
-$(document).ready ->
-  app = require("./app")
+app = require("./app")
 
-  console.log "starting"
+console.log "env.js - app", app
 
-  app.start()
+app.start()

@@ -1,15 +1,15 @@
 'use strict'
 
-RootView = require './views/root_view'
+RootView    = require './views/root_view'
 
-App = do (Backbone, Marionette) ->
-  App = new Marionette.Application()
+class TodoApp extends Marionette.Application
+  setRootLayout: ->
+    @root = new RootView()
 
+App = new TodoApp()
 
-  App.on "before:start", ->
-    App.root = new RootView
-    App.root.render()
-
-  App
+App.on "before:start", ->
+  App.setRootLayout()
+  App.root.render()
 
 module.exports = App

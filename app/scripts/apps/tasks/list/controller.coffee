@@ -1,3 +1,5 @@
+'use strict'
+
 App  = require "app"
 View = require "./view"
 
@@ -15,5 +17,10 @@ class Controller extends Marionette.Object
   getView: (options) ->
     new View
       collection: options.collection
+
+App.on "start", ->
+  controller = new Controller()
+  controller.start()
+  Backbone.history.start();
 
 module.exports = Controller
