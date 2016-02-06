@@ -26,9 +26,6 @@ window.Backbone        = Backbone
 window.Marionette      = Marionette
 window._               = _
 window.URI             = URI
-window.App             = require "./app"
-window.App.Controllers = require "./lib/controllers"
-window.App.CopyPaste   = require "./lib/copy_paste"
 
 ##################### load behaviors ###########################################
 
@@ -42,6 +39,8 @@ window.App.CopyPaste   = require "./lib/copy_paste"
 
 ##################### load entities ############################################
 
+require './entities/todos'
+
 ##################### load sub apps ############################################
 
 require './apps/tasks'
@@ -49,4 +48,8 @@ require './apps/tasks'
 ################################################################################
 
 $(document).ready ->
-  App.start()
+  app = require("./app")
+
+  console.log "starting"
+
+  app.start()

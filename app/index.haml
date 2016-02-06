@@ -2,7 +2,7 @@
 %html{lang: "en", class: "no-js"}
   %head
     %meta{charset: "utf-8"}
-    %title Testing
+    %title Todos
     %meta{content: "", name: "description"}
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
     %link{href: "/favicon.ico", rel: "shortcut icon"}
@@ -14,13 +14,13 @@
 
   %body
     #canvas-wrap
-      %section#todos
+      %section#main-region
 
     / build:js assets/app.js
     %script{src: "/bower_components/jquery/dist/jquery.min.js" }
     %script{src: "/bower_components/fastclick/lib/fastclick.js" }
-    %script{src: "/bower_components/foundation-sites/dist/foundation.js" }
-    %script{src: "/bower_components/moment/moment.js"}
+    -# %script{src: "/bower_components/foundation-sites/dist/foundation.js" }
+    -# %script{src: "/bower_components/moment/moment.js"}
 
     %script{src: "scripts/env.js"}
     / endbuild

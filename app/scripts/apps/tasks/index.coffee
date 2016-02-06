@@ -1,4 +1,6 @@
+App  = require 'app'
 ListController = require './list/controller'
 
-App.addInitializer ->
-  new ListController()
+App.on "start" , ->
+  controller = new ListController()
+  controller.start()
