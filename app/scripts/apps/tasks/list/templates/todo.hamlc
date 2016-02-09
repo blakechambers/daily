@@ -1,1 +1,4 @@
-%span This is a todo.
+%span= @title
+%span.time= moment(@created).fromNow()
+%a.destroy
+  remove

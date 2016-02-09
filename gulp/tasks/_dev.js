@@ -9,7 +9,7 @@ var historyApiFallback = require('connect-history-api-fallback');
 
 var browserSync = require('../util/browser_sync');
 
-gulp.task('dev', ['haml', 'styles', 'browserify'], function () {
+gulp.task('dev', ['haml', 'styles', 'extras', 'browserify'], function () {
   browserSync.configure({
     notify: false,
     port:   config.port,
@@ -17,6 +17,7 @@ gulp.task('dev', ['haml', 'styles', 'browserify'], function () {
     server: {
       baseDir: [config.dist, 'app'],
       routes: {
+
         '/bower_components': 'bower_components'
       },
       middleware: [ historyApiFallback() ]

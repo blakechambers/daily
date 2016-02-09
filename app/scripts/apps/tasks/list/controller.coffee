@@ -1,7 +1,9 @@
 'use strict'
 
 App  = require "app"
-View = require "./view"
+
+CollectionView = require "./collection_view"
+NewView        = require "./new_view"
 
 class Controller extends Marionette.Object
 
@@ -9,13 +11,21 @@ class Controller extends Marionette.Object
     @todos = App.request "todos:all"
 
   start: ->
-    view = @getView
+    collectionView = @getCollectionView
       collection: @todos
 
-    App.root.showChildView "list", view
+    newView = @getNewView
+      collection: @todos
 
-  getView: (options) ->
-    new View
+    App.root.showChildView "newTodo", newView
+    App.root.showChildView "todos",   collectionView
+
+  getCollectionView: (options) ->
+    new CollectionView
+      collection: options.collection
+
+  getNewView: (options) ->
+    new NewView
       collection: options.collection
 
 App.on "start", ->

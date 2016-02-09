@@ -1,6 +1,12 @@
 @import "./env";
-@import "./reset";
 @import "./fonts";
+
+@import "foundation_settings";
+@import "foundation";
 
 @import "./architecture";
 @import "./typography";
+
+span.time {
+  color: #bbb;
+}

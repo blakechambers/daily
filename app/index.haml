@@ -8,23 +8,26 @@
     %link{href: "/favicon.ico", rel: "shortcut icon"}
     %link{href: "/apple-touch-icon.png", rel: "apple-touch-icon"}
 
+    %link{rel:"manifest", href:"manifest.json"}
+
     / build:css assets/app.css
     %link{href: "/styles/app.css", rel: "stylesheet"}
     / endbuild
 
   %body
-    #canvas-wrap
-      %section#main-region
+    #canvas-wrap.row
+      .large-6.large-offset-1.columns
+        %section#main-region
 
     / build:js assets/app.js
     %script{src: "/bower_components/jquery/dist/jquery.min.js"}
     %script{src: "/bower_components/underscore/underscore-min.js"}
     %script{src: "/bower_components/backbone/backbone.js"}
+    %script{src: "/bower_components/backbone.localStorage/backbone.localStorage.js"}
     %script{src: "/bower_components/backbone.marionette/lib/backbone.marionette.min.js"}
     %script{src: "/bower_components/cocktail/Cocktail.js"}
     %script{src: "/bower_components/urijs/src/URI.min.js"}
-    -# %script{src: "/bower_components/foundation-sites/dist/foundation.js" }
-    -# %script{src: "/bower_components/moment/moment.js"}
+    %script{src: "/bower_components/moment/moment.js"}
 
     %script{src: "scripts/env.js"}
     / endbuild

@@ -38,12 +38,29 @@ require './entities/todos'
 
 ##################### load sub apps ############################################
 
-# require './apps/tasks'
+require './apps/tasks/list/controller'
+
+##################### service worker ###########################################
+
+if 'serviceWorker' of navigator
+  navigator.serviceWorker.register('/sw.js').then((registration) ->
+    # console.log 'registration success', registration.scope
+
+    return
+  ).catch (err) ->
+    # console.log 'ServiceWorker registration failed: ', err
+
+  navigator.serviceWorker.ready.then (registration) ->
+    # console.log "init subscription"
+
+    registration.pushManager.subscribe({userVisibleOnly: true}).then((pushSubscription) ->
+      # console.log 'subscription success', registration.scope
+
+      return
+    ).catch (e) ->
+      # console.error 'Unable to register for push', e
 
 ##################### start some things ########################################
 
 app = require("./app")
-
-console.log "env.js - app", app
-
 app.start()

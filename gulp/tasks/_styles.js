@@ -18,7 +18,7 @@ gulp.task('styles', function () {
   return gulp.src(assets_paths.styles)
     .pipe(sourcemaps.init())
     .pipe(sass({
-      includePaths: ['../bower_components/foundation/scss']
+      includePaths: ['bower_components/foundation/scss']
     }).on('error', sass.logError))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.dist + '/styles'))
