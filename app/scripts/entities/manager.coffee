@@ -2,6 +2,8 @@
 
 App  = require 'app'
 
+notesChannel = Backbone.Radio.channel('notes');
+
 class Manager extends Backbone.Model
   defaults:
     state:        "stopped"
@@ -16,6 +18,10 @@ class Manager extends Backbone.Model
   start: ->
     start_time = new Date()
     console.log "[Manager] starting...", start_time
+
+    notesChannel.request "new",
+      type:    "pom",
+      created: start_time
 
     @set
       state:      "started"

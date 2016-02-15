@@ -7,5 +7,6 @@ class RootView extends Marionette.LayoutView
     manager:  "section#manager"
     newTodo:  "section#new-todo"
     todos:    "section#todos"
+    notes:    "section#notes"
 
 module.exports = RootView

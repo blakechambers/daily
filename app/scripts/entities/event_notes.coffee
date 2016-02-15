@@ -3,6 +3,8 @@
 App       = require "app"
 EventNote = require "./event_note"
 
+notesChannel = Backbone.Radio.channel('notes');
+
 class EventNotes extends Backbone.Collection
   model: EventNote
 
@@ -10,7 +12,7 @@ class EventNotes extends Backbone.Collection
 
   comparator: 'created'
 
-App.reqres.setHandler "todos:all", ->
+App.reqres.setHandler "entities:event_notes", ->
   notes = new EventNotes()
   notes.fetch()
 

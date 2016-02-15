@@ -8,11 +8,19 @@ class Controller extends Marionette.Object
   initialize: ->
     @event_notes = App.request "entities:event_notes"
 
-    @view = new View
+    @notesChannel = Backbone.Radio.channel('notes');
+
+    @notesChannel.reply "new", (args) =>
+      @event_notes.create()
+
+
+    @notesView = new View
       collection: @event_notes
 
+    console.log "view:", @notesView, @event_notes
+
   start: ->
-    App.root.showChildView "notes", @view
+    App.root.showChildView "notes", @notesView
 
 App.on "start", ->
   controller = new Controller()

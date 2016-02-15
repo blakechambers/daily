@@ -2,7 +2,11 @@
 
 class NoteView extends Marionette.ItemView
   template: require("./templates/note")
-  tagName: "li"
+  tagName:  "li"
 
 class NotesView extends Marionette.CollectionView
-  tagName: "ul"
+  childView: NoteView
+  tagName:   "ul"
+  className: "panel"
+
+module.exports = NotesView

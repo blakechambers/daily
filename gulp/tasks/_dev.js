@@ -25,8 +25,7 @@ gulp.task('dev', ['haml', 'styles', 'extras', 'browserify'], function () {
   });
 
   gulp.watch([
-    './.tmp/scripts/**/*.js',
-    './.tmp/*.html'
+    './.tmp/scripts/env.js'
   ]).on('change', browserSync.reload);
 
   gulp.watch('app/scripts/**/*.coffee', ["browserify"])

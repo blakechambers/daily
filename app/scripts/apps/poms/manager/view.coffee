@@ -1,7 +1,7 @@
 'use strict'
 
 class View extends Marionette.ItemView
-  template: require("./templates/view.hamlc")
+  template: require("./templates/view")
 
   ui:
     start: ".start"

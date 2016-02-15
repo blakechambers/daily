@@ -11,7 +11,6 @@ var gutil = require('gulp-util');
 var hamlcify = require('haml-coffee-browserify');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
-var watchify = require('watchify');
 
 // Bundle files with browserify
 gulp.task('browserify', function () {
@@ -21,17 +20,13 @@ gulp.task('browserify', function () {
     extensions: [
       ".hamlc",
       ".haml",
-      ".coffee",
-      ".js",
-      ".json"
+      ".coffee"
     ],
     paths: ['app/scripts'],
     debug: true,
     // defining transforms here will avoid crashing your stream
     transform: [coffeeify, debowerify, hamlcify]
   });
-
-  bundler = watchify(bundler);
 
   var rebundle = function() {
     return bundler.bundle()
@@ -44,7 +39,7 @@ gulp.task('browserify', function () {
       .pipe(gulp.dest(config.dist + '/scripts'));
   }
 
-  bundler.on('update', rebundle);
+  // bundler.on('update', rebundle);
 
   return rebundle();
 });
