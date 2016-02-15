@@ -1,5 +1,5 @@
 .panel
-  %h3 pom manager
+  %h4.clock
 
   %dl
     %dt= @start_time

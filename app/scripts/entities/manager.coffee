@@ -17,7 +17,6 @@ class Manager extends Backbone.Model
 
   start: ->
     start_time = new Date()
-    console.log "[Manager] starting...", start_time
 
     notesChannel.request "new",
       type:    "pom",
@@ -28,8 +27,6 @@ class Manager extends Backbone.Model
       start_time: start_time
 
   stop: ->
-    console.log "[Manager] stopping..."
-
     @set
       state:      "stopped"
 

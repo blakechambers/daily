@@ -1,1 +1,2 @@
-%span this is a note
+%span this is a note.
+%a.destroy remove

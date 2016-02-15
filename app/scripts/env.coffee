@@ -64,6 +64,28 @@ if 'serviceWorker' of navigator
     ).catch (e) ->
       # console.error 'Unable to register for push', e
 
+##### other junk ####
+
+# eventTime = 1366549200
+# # Timestamp - Sun, 21 Apr 2013 13:00:00 GMT
+# currentTime = 1366547400
+# # Timestamp - Sun, 21 Apr 2013 12:30:00 GMT
+# diffTime = eventTime - currentTime
+# duration = moment.duration(diffTime * 1000, 'milliseconds')
+# interval = 1000
+#
+Number.prototype.pad = (size) ->
+  s = String(this)
+  while s.length < (size or 2)
+    s = '0' + s
+  s
+#
+# setInterval (->
+#   duration = moment.duration(duration - interval, 'milliseconds')
+#   $('.countdown').text duration.minutes() + ':' + duration.seconds().pad()
+#   return
+# ), interval
+
 ##################### start some things ########################################
 
 app = require("./app")
