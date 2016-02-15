@@ -35,10 +35,14 @@ window.URI             = URI
 ##################### load entities ############################################
 
 require './entities/todos'
+require './entities/event_notes'
+require './entities/manager'
 
 ##################### load sub apps ############################################
 
 require './apps/tasks/list/controller'
+require './apps/event_notes/list/controller'
+require './apps/poms/manager/controller'
 
 ##################### service worker ###########################################
 

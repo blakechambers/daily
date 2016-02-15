@@ -1,4 +1,7 @@
-%h1 this is a root view
-
-#new-todo-region
-#todos-region
+.row
+  .large-6.columns
+    %section#new-todo
+    %section#todos
+  .large-6.columns
+    %section#manager
+    %section#notes

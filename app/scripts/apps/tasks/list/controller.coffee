@@ -31,6 +31,5 @@ class Controller extends Marionette.Object
 App.on "start", ->
   controller = new Controller()
   controller.start()
-  Backbone.history.start();
 
 module.exports = Controller

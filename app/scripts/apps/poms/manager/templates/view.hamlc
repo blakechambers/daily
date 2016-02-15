@@ -1,0 +1,13 @@
+.panel
+  %h3 pom manager
+
+  %dl
+    %dt= @start_time
+    %dd timer
+    %dt= @state
+    %dd current state
+
+  - if @state == "stopped"
+    %a.button.start start
+  - if @state == "started"
+    %a.button.stop stop

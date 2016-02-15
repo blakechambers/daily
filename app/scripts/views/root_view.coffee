@@ -4,7 +4,8 @@ class RootView extends Marionette.LayoutView
   el: "#main-region"
 
   regions:
-    newTodo:  "#new-todo-region"
-    todos:    "#todos-region"
+    manager:  "section#manager"
+    newTodo:  "section#new-todo"
+    todos:    "section#todos"
 
 module.exports = RootView
