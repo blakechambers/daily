@@ -7,10 +7,13 @@ class Controller extends Marionette.Object
 
   initialize: ->
     console.log "pom controller init"
-    @manager = App.request("entities:manager")
+    App.request "entities:manager", (manager)=>
+      @manager = manager
 
-    @view = new ManagerView
-      model: @manager
+      console.log "item", manager
+
+      @view = new ManagerView
+        model: @manager
 
   start: ->
     App.root.showChildView "manager", @view

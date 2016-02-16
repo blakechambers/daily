@@ -21,14 +21,18 @@ class Manager extends Backbone.Model
   start: ->
     start_time = new Date()
 
-    @set
+    @save
       state:      "started"
       start_time: start_time
 
+  getFinishTime: ->
+    moment(@get("start_time")) + (@get("duration") * 60 * 1000)
+
   getUpdatedRemainingDuration: ->
-    endTime   = moment(@get("start_time")) + (@get("duration") * 60 * 1000)
-    startTime = Date.now()
-    duration = endTime - startTime
+    end_time   = @getFinishTime()
+    start_time = moment()
+    duration   = end_time - start_time
+
     @displayDuration duration
 
   displayDuration: (duration) ->
@@ -41,9 +45,11 @@ class Manager extends Backbone.Model
       "-" + duration.minutes() + ':' + duration.seconds().pad()
 
   stop: ->
-    start_time = @get("start_time")
+    start_time = moment(@get("start_time"))
     end_time   = moment()
     duration   = end_time - start_time
+
+    console.log "stopping", end_time, start_time, duration
 
     notesChannel.request "new",
       type:       "pom",
@@ -51,10 +57,23 @@ class Manager extends Backbone.Model
       duration:   @displayDuration(duration + 1000)
       message:    @get("message")
 
-    @set
+    @save
       state:           "stopped"
-      start_time:      start_time
+      message:         ""
       displayDuration: @displayDuration((25 * 60 * 1000))
 
-App.reqres.setHandler "entities:manager", ->
-  new Manager()
+notesChannel = Backbone.Radio.channel('notes');
+
+class Managers extends Backbone.Collection
+  model:        Manager
+  localStorage: new Backbone.LocalStorage('daily-manager')
+
+App.reqres.setHandler "entities:manager", (callback) ->
+  collection = new Managers()
+  collection.fetch
+    success: (coll) ->
+      firstItem = coll.first() || coll.create()
+
+      callback firstItem
+
+  null

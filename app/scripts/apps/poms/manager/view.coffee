@@ -25,7 +25,8 @@ class View extends Marionette.ItemView
       @setupTimer()
 
   updateMessage: ->
-    @model.set "message", @ui.messageIn.val()
+    @model.save
+      message: @ui.messageIn.val()
 
   updateTimer: =>
     clock_text = @model.getUpdatedRemainingDuration()
