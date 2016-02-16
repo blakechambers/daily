@@ -16,6 +16,5 @@ class NoteView extends Marionette.ItemView
 class NotesView extends Marionette.CollectionView
   childView: NoteView
   tagName:   "ul"
-  className: "panel"
 
 module.exports = NotesView

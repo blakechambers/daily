@@ -1,2 +1,4 @@
-%span this is a note.
+%span.duration= @duration
+\-
+%span.message= @message
 %a.destroy remove

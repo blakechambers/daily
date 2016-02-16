@@ -11,13 +11,10 @@ class Controller extends Marionette.Object
     @notesChannel = Backbone.Radio.channel('notes');
 
     @notesChannel.reply "new", (args) =>
-      @event_notes.create()
-
+      @event_notes.create(args)
 
     @notesView = new View
       collection: @event_notes
-
-    console.log "view:", @notesView, @event_notes
 
   start: ->
     App.root.showChildView "notes", @notesView

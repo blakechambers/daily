@@ -1,13 +1,12 @@
-.panel
-  %h4.clock
+.clock --:--
+.state= @state
 
-  %dl
-    %dt= @start_time
-    %dd timer
-    %dt= @state
-    %dd current state
+- if @state == "stopped"
+  %textarea.messageIn{placeholder: "what are you going to accomplish?"}
+- if @state == "started"
+  .message= @message
 
-  - if @state == "stopped"
-    %a.button.start start
-  - if @state == "started"
-    %a.button.stop stop
+- if @state == "stopped"
+  %a.start.button.small start
+- if @state == "started"
+  %a.stop.button.small stop

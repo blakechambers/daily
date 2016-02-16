@@ -7,8 +7,11 @@ class EventNote extends Backbone.Model
     type:     "entry"
 
   initialize: ->
+
     if @isNew()
+
       @set
-        created: Date.now()
+        created:  Date.now()
+
 
 module.exports = EventNote
