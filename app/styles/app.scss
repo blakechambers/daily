@@ -1,6 +1,10 @@
-@import "./env";
-@import "./fonts";
-@import "./reset";
+@import "env";
+@import "fonts";
+@import "reset";
 
-@import "./architecture";
-@import "./typography";
+@import "architecture";
+@import "typography";
+
+@import "apps/manager";
+@import "apps/notes";
+@import "apps/todos";

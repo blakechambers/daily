@@ -7,6 +7,12 @@ $primary-width: 35rem;
 
 $sub-padding:   0.5rem;
 
+$task-complete:           rgb(56,194,208);
+$task-complete-color:     darken($task-complete, 25%);
+
+$background-hue-opacity:  0.1;
+$background-text-opacity: 0.4;
+
 .wrap {
   display: block;
   position: relative;
@@ -16,6 +22,11 @@ $sub-padding:   0.5rem;
     width: $aside-width;
 
     text-align: right;
+  }
+
+  .tail {
+    float: right;
+    top:   0;
   }
 
   .module {
@@ -37,7 +48,9 @@ $sub-padding:   0.5rem;
 
   .completed {
     text-decoration: line-through;
-    color: #aaa;
+
+    color:            rgba($task-complete-color, $background-text-opacity);
+    background-color: rgba($task-complete, $background-hue-opacity);
 
     .checkbox {
       &:after {
@@ -79,18 +92,18 @@ $sub-padding:   0.5rem;
 
 
 #main-region {
-  width: 70rem;
+  width: 80rem;
   margin: 0 0 0 2rem;
   display: block;
   overflow: auto;
 }
 
 %row-element {
-  margin-top: $cs/2;
+  margin-top:    $cs/2;
   margin-bottom: $cs/2;
-  display: table;
-  clear: both;
-  min-height: 1rem;
+
+  clear:         both;
+  min-height:    1.5rem;
 }
 
 hr.divider {

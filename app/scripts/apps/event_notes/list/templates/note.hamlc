@@ -3,4 +3,5 @@
   %span.duration= @duration
 .module
   %span.message= @message
+.tail
   %a.destroy remove
