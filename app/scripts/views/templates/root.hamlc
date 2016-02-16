@@ -1,7 +1,8 @@
-.row
-  .large-6.columns
-    %section#new-todo
-    %section#todos
-  .large-6.columns
-    %section#manager
-    %section#notes
+%section#notes
+%section#manager
+%hr.divider
+
+
+%h2 Today
+%section#new-todo
+%section#todos

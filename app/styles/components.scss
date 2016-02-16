@@ -1,0 +1,23 @@
+@import "./env";
+
+%destroyable {
+  .destroy {
+    // color: #def;
+    display: none;
+    font-size: 0.7em;
+    text-transform: uppercase;
+  }
+
+  &:hover {
+    .destroy {
+      display: inline;
+      color: #46f;
+    }
+  }
+}
+
+.button.small {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  font-weight: 700;
+}

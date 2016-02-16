@@ -1,4 +1,1 @@
-.row
-  .large-12.columns
-    %label new note
-      %input#newText{type: "text", placeholder: "enter some text"}
+%input#newText{type: "text", placeholder: "enter a goal"}

@@ -3,6 +3,7 @@
 class NoteView extends Marionette.ItemView
   template: require("./templates/note")
   tagName:  "li"
+  className: "wrap note"
 
   ui:
     destroy: ".destroy"

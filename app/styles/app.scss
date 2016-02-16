@@ -1,15 +1,6 @@
 @import "./env";
 @import "./fonts";
-
-@import "foundation_settings";
-@import "foundation";
+@import "./reset";
 
 @import "./architecture";
 @import "./typography";
-
-.clock {
-  font-size: 3em;
-  font-weight: 900;
-  padding: 2rem 0;
-  text-align: center;
-}

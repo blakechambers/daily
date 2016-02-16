@@ -3,6 +3,7 @@
 class View extends Marionette.ItemView
   template: require("./templates/view")
   prior_text: "foooooo"
+  className:  "manager wrap"
 
   ui:
     clock:      ".clock"
@@ -10,20 +11,18 @@ class View extends Marionette.ItemView
     stop:       ".stop"
     message:    ".message"
     messageIn:  ".messageIn"
-    duration:   ".duration"
 
   events:
     "click @ui.start"     : "startTimer"
     "click @ui.stop"      : "stopTimer"
     "input @ui.messageIn" : "updateMessage"
 
-  modelEvents:
-    "change:message": "ping"
-
-
-  ping: ->
-    console.log "message change", @model.get("message")
-
+  onBeforeRender: ->
+    if @model.isStarted()
+      window.clearInterval @interval if @interval
+  onRender: ->
+    if @model.isStarted()
+      @setupTimer()
 
   updateMessage: ->
     @model.set "message", @ui.messageIn.val()

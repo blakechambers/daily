@@ -1,12 +1,13 @@
-.clock --:--
-.state= @state
+%div{class: "editing"}
+%aside
+  .clock= @displayDuration
+  - if @state == "stopped"
+    %a.start.button.small start
+  - if @state == "started"
+    %a.stop.button.small stop
 
-- if @state == "stopped"
-  %textarea.messageIn{placeholder: "what are you going to accomplish?"}
-- if @state == "started"
-  .message= @message
-
-- if @state == "stopped"
-  %a.start.button.small start
-- if @state == "started"
-  %a.stop.button.small stop
+.module.collapse
+  - if @state == "stopped"
+    %textarea.messageIn{placeholder: "What are you going to accomplish?"}
+  - if @state == "started"
+    .message= @message

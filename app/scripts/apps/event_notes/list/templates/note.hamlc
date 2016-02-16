@@ -1,4 +1,6 @@
-%span.duration= @duration
-\-
-%span.message= @message
-%a.destroy remove
+
+%aside
+  %span.duration= @duration
+.module
+  %span.message= @message
+  %a.destroy remove

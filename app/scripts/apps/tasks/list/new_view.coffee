@@ -1,5 +1,6 @@
 class NewTodoView extends Marionette.ItemView
   template: require "./templates/new"
+  className: "new-todo"
 
   ui:
     input: "#newText"

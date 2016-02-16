@@ -1,1 +1,75 @@
 @import "./env";
+@import "./components";
+
+$aside-width:   10rem;
+$aside-padding: 2rem;
+$primary-width: 35rem;
+
+$sub-padding:   0.5rem;
+
+.wrap {
+  display: block;
+  position: relative;
+
+  aside {
+    position: absolute;
+    width: $aside-width;
+
+    text-align: right;
+  }
+
+  .module {
+    margin-left:  $aside-width + $aside-padding;
+    width:        $primary-width;
+    padding-left: $sub-padding;
+
+    &.collapse {
+      padding-left: 0rem;
+    }
+
+  }
+}
+
+.manager {
+  display: block;
+  margin-top: 3rem;
+
+  aside {
+    padding-top: $sub-padding;
+  }
+
+  .clock {
+    font-weight: 900;
+    line-height: $line-height;
+  }
+
+  .message {
+    height: 4rem;
+  }
+}
+
+
+#main-region {
+  width: 70rem;
+  margin: 0 0 0 2rem;
+  display: block;
+  overflow: auto;
+}
+
+%row-element {
+  margin-top: $cs/2;
+  margin-bottom: $cs/2;
+  display: table;
+  clear: both;
+  min-height: 1rem;
+}
+
+hr.divider {
+  margin-top:    $cs;
+  margin-bottom: $cs;
+}
+
+.task, .manager, .note, .new-todo,  {
+  @extend %row-element;
+  @extend %destroyable;
+}

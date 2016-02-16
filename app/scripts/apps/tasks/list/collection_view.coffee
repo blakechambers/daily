@@ -2,6 +2,7 @@
 class TodoView extends Marionette.ItemView
   template: require "./templates/todo"
   tagName: "li"
+  className: "task"
 
   ui:
     destroy: ".destroy"
@@ -14,6 +15,6 @@ class TodoView extends Marionette.ItemView
 
 class TodosView extends Marionette.CollectionView
   childView: TodoView
-  tagName: "ul"
+  tagName: "ol"
 
 module.exports = TodosView

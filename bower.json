@@ -24,7 +24,6 @@
     "urijs": "^1.17.0",
     "cocktail": "^0.5.11",
     "backbone.localStorage": "backbone.localstorage#^1.1.16",
-    "foundation-sites": "^6.1.2",
     "moment": "^2.11.2",
     "backbone.radio": "^1.0.2"
   }
