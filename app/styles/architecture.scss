@@ -30,6 +30,35 @@ $sub-padding:   0.5rem;
   }
 }
 
+.task {
+  aside {
+    height: 1rem;
+  }
+
+  .completed {
+    text-decoration: line-through;
+    color: #aaa;
+
+    .checkbox {
+      &:after {
+        content: "[x]";
+      }
+    }
+
+  }
+
+  .checkbox {
+    text-decoration: none;
+    color: inherit;
+
+    &:after {
+      content: "[ ]";
+    }
+    text-align: right;
+  }
+
+}
+
 .manager {
   display: block;
   margin-top: 3rem;
@@ -65,8 +94,11 @@ $sub-padding:   0.5rem;
 }
 
 hr.divider {
-  margin-top:    $cs;
-  margin-bottom: $cs;
+    margin: $cs 0 $cs ($aside-width + $aside-padding);
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    width: $primary-width;
 }
 
 .task, .manager, .note, .new-todo,  {

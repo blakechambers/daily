@@ -1,4 +1,9 @@
-%span= @title
-%span.time= moment(@created).fromNow()
-%a.destroy
-  remove
+- isCompleted = if @completed then "completed" else "not-completed"
+
+%div{class: isCompleted }
+  %aside
+    %a.checkbox
+  .module
+    %span= @title
+    %a.destroy
+      remove

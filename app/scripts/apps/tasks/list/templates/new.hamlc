@@ -1,1 +1,2 @@
-%input#newText{type: "text", placeholder: "enter a goal"}
+.module.collapse
+  %input#newText{type: "text", placeholder: "enter a goal"}

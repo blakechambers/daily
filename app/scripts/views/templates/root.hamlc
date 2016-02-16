@@ -2,7 +2,8 @@
 %section#manager
 %hr.divider
 
-
-%h2 Today
+.wrap
+  .module
+    %h2 Today
 %section#new-todo
 %section#todos
