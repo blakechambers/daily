@@ -8,4 +8,4 @@
       - if @type == "break"
         [break]
       - else
-        != @message.replace(/\n/g, "<br/>");
+        %pre!= @message.replace(/\n/g, "<br/>");

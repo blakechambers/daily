@@ -1,5 +1,8 @@
 @import "env";
 
+$yellow:                      #FFFFF0;
+$yellow-darker:               darken($yellow, 5%);
+
 $line-height:                 1.5em;
 
 body {
@@ -42,7 +45,7 @@ ol {
   width:                      100%;
 
   &:focus {
-    background-color:         #ffd;
+    background-color:         $yellow-darker;
     outline:                  none;
   }
 
@@ -65,5 +68,5 @@ input[type="text"], textarea {
     color: #ddc;
   }
 
-  background-color:           #FFFFF0;
+  background-color:           $yellow;
 }
