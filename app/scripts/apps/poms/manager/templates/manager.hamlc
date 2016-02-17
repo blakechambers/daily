@@ -2,7 +2,7 @@
 %aside
   .clock= @displayDuration
   - if @hasNextState("started")
-    %a.action.button.small(data-next-state="started") start
+    %a.action.button.small(data-next-state="started") start sprint
   - if @hasNextState("stopped")
     %a.action.button.small(data-next-state="stopped") end workflow
   - if @hasNextState("break")
@@ -10,11 +10,11 @@
       - if @isCurrentState("stopped")
         workflow
       - else
-        break
+        take break
 
 .module.collapse
   - if @isCurrentState("break")
-    %textarea.messageIn{placeholder: "What are you going to accomplish?"}
+    %textarea.messageIn{placeholder: "What are you going to accomplish during your sprint?"}
   - if @isCurrentState("stopped")
     .message
   - if @isCurrentState("started")

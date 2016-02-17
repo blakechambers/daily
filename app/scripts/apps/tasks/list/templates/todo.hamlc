@@ -3,8 +3,8 @@
 %div{class: isCompleted }
   %aside
     %a.checkbox
-  .module
-    %span= @title
   .tail
     %a.destroy
       remove
+  .module
+    %span= @title
