@@ -1,15 +1,21 @@
 %div{class: "editing"}
 %aside
   .clock= @displayDuration
-  - if @nextState("started")
-    %a.start.button.small start
-  - if @nextState("stopped")
-    %a.stop.button.small stop
-  - if @nextState("break")
-    %a.kick-off.button.small get started
+  - if @hasNextState("started")
+    %a.action.button.small(data-next-state="started") start
+  - if @hasNextState("stopped")
+    %a.action.button.small(data-next-state="stopped") end workflow
+  - if @hasNextState("break")
+    %a.action.button.small(data-next-state="break")
+      - if @isCurrentState("stopped")
+        workflow
+      - else
+        break
 
 .module.collapse
-  - if @state == "stopped"
+  - if @isCurrentState("break")
     %textarea.messageIn{placeholder: "What are you going to accomplish?"}
-  - if @state == "started"
+  - if @isCurrentState("stopped")
+    .message
+  - if @isCurrentState("started")
     .message!= @message.replace(/\n/g, "<br/>")

@@ -7,22 +7,31 @@ class View extends Marionette.ItemView
 
   ui:
     clock:      ".clock"
-    start:      ".start"
-    stop:       ".stop"
+    # start:      ".start"
+    # stop:       ".stop"
     message:    ".message"
     messageIn:  ".messageIn"
 
   events:
-    "click @ui.start"     : "startTimer"
-    "click @ui.stop"      : "stopTimer"
+    # "click @ui.start"     : "startTimer"
+    # "click @ui.stop"      : "stopTimer"
     "input @ui.messageIn" : "updateMessage"
+    "click .action"    : "transitionStateAction"
 
   onBeforeRender: ->
-    if @model.isTimed()
-      window.clearInterval @interval if @interval
+    console.log "before:render", @model.isTimed()
+    @stopTimer()
+
   onRender: ->
+    console.log "render", @model.isTimed()
     if @model.isTimed()
-      @setupTimer()
+      @startTimer()
+
+  transitionStateAction: (event) ->
+    nextState =  @$el.find(event.currentTarget).attr("data-next-state")
+
+    @model.setState(nextState)
+    @render()
 
   updateMessage: ->
     @model.save
@@ -35,33 +44,24 @@ class View extends Marionette.ItemView
       @ui.clock.text(clock_text)
       @prior_text = clock_text
 
-  setupTimer: ->
+  startTimer: ->
+    @stopTimer()
     @interval = setInterval @updateTimer, 33
 
-  startTimer: ->
-    if @hasNextState("started")
-
-      @model.start()
-      @setupTimer()
-
-      @render()
-    else
-      console.log "[Error] timer already started"
-
   stopTimer: ->
-    if @hasNextState("stopped")
+    if @interval
       window.clearInterval @interval
-      @model.stop()
+      @interval = undefined
 
-      @render()
-    else
-      console.log "[Error] timer already stopped"
+  isCurrentState: (state) =>
+    @model.is(state)
 
   hasNextState: (state) =>
     @model.hasNextState(state)
 
   serializeData: ->
     _.extend super(),
-      nextState: @hasNextState
+      hasNextState:   @hasNextState
+      isCurrentState: @isCurrentState
 
 module.exports = View

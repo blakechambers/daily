@@ -42,7 +42,7 @@ ol {
   width:                      100%;
 
   &:focus {
-    background-color:         #ffe;
+    background-color:         #ffd;
     outline:                  none;
   }
 
@@ -62,6 +62,8 @@ ol {
 input[type="text"], textarea {
   @extend  %text-input;
   @include placeholder {
-    color: #ccc;
+    color: #ddc;
   }
+
+  background-color:           #ffe;
 }

@@ -101,11 +101,13 @@ class Manager extends Backbone.Model
       end_time   = moment()
       duration   = end_time - start_time
 
+      message = if @isBreak() then "Break" else @get("message")
+
       notesChannel.request "new",
         type:       currentState.noteType
         created:    start_time
         duration:   @displayDuration(duration + 1000)
-        message:    @get("message")
+        message:    message
 
   getFinishTime: ->
     moment(@get("start_time")) + (@get("duration") * 60 * 1000)

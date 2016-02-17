@@ -1,7 +1,11 @@
-
-%aside
-  %span.duration= @duration
-.module
-  %span.message!= @message.replace(/\n/g, "<br/>");
-.tail
-  %a.destroy remove
+%div{class: "inner #{@type}"}
+  %aside
+    %span.duration= @duration
+  .tail
+    %a.destroy remove
+  .module
+    %span.message
+      - if @type == "break"
+        [break]
+      - else
+        != @message.replace(/\n/g, "<br/>");

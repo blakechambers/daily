@@ -4,8 +4,8 @@
   position:                relative;
 
   .inner {
-    padding-top:           $cs/2;
-    padding-bottom:        $cs/2;
+    padding-top:           $cs/4;
+    padding-bottom:        $cs/4;
   }
 
   aside {
@@ -15,20 +15,15 @@
   }
 
   .tail {
-    left:                  $aside-width + $cs + $primary-width + $cs + $cs + (2 * $sub-padding);
+    left:                  $aside-width + $cs + $primary-width + $cs;
     position:              absolute;
-    top:                   0;
-
-    > * {
-      padding-top:           $cs/2;
-      padding-bottom:        $cs/2;
-    }
   }
 
   .module {
     margin-left:           $aside-width + $aside-padding;
     padding-left:          $sub-padding;
     width:                 $primary-width;
+    min-height:            1rem;
 
     &.collapse {
       padding-left:        0;
