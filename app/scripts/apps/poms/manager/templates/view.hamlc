@@ -10,4 +10,4 @@
   - if @state == "stopped"
     %textarea.messageIn{placeholder: "What are you going to accomplish?"}
   - if @state == "started"
-    .message= @message
+    .message!= @message.replace(/\n/g, "<br/>")

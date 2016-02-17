@@ -2,6 +2,6 @@
 %aside
   %span.duration= @duration
 .module
-  %span.message= @message
+  %span.message!= @message.replace(/\n/g, "<br/>");
 .tail
   %a.destroy remove
