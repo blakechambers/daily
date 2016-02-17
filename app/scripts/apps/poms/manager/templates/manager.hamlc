@@ -1,10 +1,12 @@
 %div{class: "editing"}
 %aside
   .clock= @displayDuration
-  - if @state == "stopped"
+  - if @nextState("started")
     %a.start.button.small start
-  - if @state == "started"
+  - if @nextState("stopped")
     %a.stop.button.small stop
+  - if @nextState("break")
+    %a.kick-off.button.small get started
 
 .module.collapse
   - if @state == "stopped"

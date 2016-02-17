@@ -1,7 +1,7 @@
 'use strict'
 
 class View extends Marionette.ItemView
-  template: require("./templates/view")
+  template: require("./templates/manager")
   prior_text: "foooooo"
   className:  "manager wrap"
 
@@ -18,10 +18,10 @@ class View extends Marionette.ItemView
     "input @ui.messageIn" : "updateMessage"
 
   onBeforeRender: ->
-    if @model.isStarted()
+    if @model.isTimed()
       window.clearInterval @interval if @interval
   onRender: ->
-    if @model.isStarted()
+    if @model.isTimed()
       @setupTimer()
 
   updateMessage: ->
@@ -39,7 +39,7 @@ class View extends Marionette.ItemView
     @interval = setInterval @updateTimer, 33
 
   startTimer: ->
-    if @model.isStopped()
+    if @hasNextState("started")
 
       @model.start()
       @setupTimer()
@@ -49,12 +49,19 @@ class View extends Marionette.ItemView
       console.log "[Error] timer already started"
 
   stopTimer: ->
-    if @model.isStarted()
+    if @hasNextState("stopped")
       window.clearInterval @interval
       @model.stop()
 
       @render()
     else
       console.log "[Error] timer already stopped"
+
+  hasNextState: (state) =>
+    @model.hasNextState(state)
+
+  serializeData: ->
+    _.extend super(),
+      nextState: @hasNextState
 
 module.exports = View
