@@ -1,120 +1,50 @@
-@import "./env";
-@import "./components";
-
-$aside-width:   10rem;
-$aside-padding: 2rem;
-$primary-width: 35rem;
-
-$sub-padding:   0.5rem;
-
-$task-complete:           rgb(56,194,208);
-$task-complete-color:     darken($task-complete, 25%);
-
-$background-hue-opacity:  0.1;
-$background-text-opacity: 0.4;
 
 .wrap {
-  display: block;
-  position: relative;
+  display:                 block;
+  position:                relative;
 
   aside {
-    position: absolute;
-    width: $aside-width;
-
-    text-align: right;
+    position:              absolute;
+    text-align:            right;
+    width:                 $aside-width;
   }
 
   .tail {
-    float: right;
-    top:   0;
+    left:                  $aside-width + $cs + $primary-width + $cs + $cs + (2 * $sub-padding);
+    position:              absolute;
+    top:                   0;
   }
 
   .module {
-    margin-left:  $aside-width + $aside-padding;
-    width:        $primary-width;
-    padding-left: $sub-padding;
+    margin-left:           $aside-width + $aside-padding;
+    padding-left:          $sub-padding;
+    width:                 $primary-width;
 
     &.collapse {
-      padding-left: 0rem;
+      padding-left:        0;
     }
 
   }
 }
-
-.task {
-  aside {
-    height: 1rem;
-  }
-
-  .completed {
-    text-decoration: line-through;
-
-    color:            rgba($task-complete-color, $background-text-opacity);
-    background-color: rgba($task-complete, $background-hue-opacity);
-
-    .checkbox {
-      &:after {
-        content: "[x]";
-      }
-    }
-
-  }
-
-  .checkbox {
-    text-decoration: none;
-    color: inherit;
-
-    &:after {
-      content: "[ ]";
-    }
-    text-align: right;
-  }
-
-}
-
-.manager {
-  display: block;
-  margin-top: 3rem;
-
-  aside {
-    padding-top: $sub-padding;
-  }
-
-  .clock {
-    font-weight: 900;
-    line-height: $line-height;
-  }
-
-  .message {
-    height: 4rem;
-  }
-}
-
 
 #main-region {
-  width: 80rem;
-  margin: 0 0 0 2rem;
-  display: block;
-  overflow: auto;
-}
-
-%row-element {
-  margin-top:    $cs/2;
-  margin-bottom: $cs/2;
-
-  clear:         both;
-  min-height:    1.5rem;
+  display:                 block;
+  margin-left:             $cs;
+  overflow:                auto;
 }
 
 hr.divider {
-    margin: $cs 0 $cs ($aside-width + $aside-padding);
-    border: 0;
-    height: 1px;
-    background: #ccc;
-    width: $primary-width;
+    background:            $silver;
+    border:                0;
+    height:                1px;
+    margin:                $cs 0 $cs ($aside-width + $aside-padding);
+    width:                 $primary-width;
 }
 
-.task, .manager, .note, .new-todo,  {
+.task,
+.manager,
+.note,
+.new-todo {
   @extend %row-element;
   @extend %destroyable;
 }

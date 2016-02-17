@@ -1,0 +1,37 @@
+@mixin action-button {
+  cursor:                   pointer;
+  text-decoration:          none;
+  color:                    inherit;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
+
+%row-element {
+  margin-top:               $cs/2;
+  margin-bottom:            $cs/2;
+
+  clear:                    both;
+}
+
+%destroyable {
+  .destroy {
+    @include action-button;
+
+    display:                none;
+    position:               absolute;
+    right:                  0;
+    top:                    0;
+  }
+
+  &:hover {
+    .destroy {
+      display:              inline;
+      color:                $blue;
+    }
+  }
+}

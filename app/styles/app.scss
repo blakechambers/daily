@@ -2,9 +2,11 @@
 @import "fonts";
 @import "reset";
 
+@import "components/util";
+
 @import "architecture";
 @import "typography";
 
-@import "apps/manager";
-@import "apps/notes";
-@import "apps/todos";
+@import "apps/manager/index";
+@import "apps/notes/index";
+@import "apps/todos/index";

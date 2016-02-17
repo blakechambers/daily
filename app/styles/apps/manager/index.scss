@@ -1,1 +1,18 @@
 @import "env";
+
+.manager {
+  display:                 block;
+  margin-top:              3rem;
+
+  aside {
+    padding-top:           $sub-padding;
+  }
+
+  .clock {
+    font-weight:           900;
+  }
+
+  .message {
+    height:                4rem;
+  }
+}

@@ -1,68 +1,62 @@
 @import "env";
 
-$line-height: 1.5em;
+$line-height:                 1.5em;
 
 body {
-  font-family: $monospace;
-  font-size:   $font-size-base;
-  line-height: $line-height;
+  font-family:                $monospace;
+  font-size:                  $font-size-base;
+  line-height:                $line-height;
 }
 
 a {
-  text-decoration: underline;
-  cursor:          pointer;
-  color:           #999;
+  color:                      #999;
+  cursor:                     pointer;
+  text-decoration:            underline;
 }
 
 h2 {
-  font-weight: bolder;
-  font-size:  1.4em;
-  margin: $cs 0;
-  text-transform: uppercase;
+  font-size:                  1.4em;
+  font-weight:                bolder;
+  margin:                     $cs 0;
+  text-transform:             uppercase;
 }
 ol {
-  list-style-type:  decimal;
+  list-style-type:            decimal;
 }
 
 // ---------------------------------- FORMS --------------------------------- //
 
 %manager-text-input {
-  min-height:      3rem;
+  min-height:                 3rem;
 }
 
 %text-input {
-  border:          none;
-  border-bottom:   1px dashed #ccc;
-  border-left:     1px dashed #ccc;
-  box-sizing:      border-box;
-  width:           100%;
-  line-height:     inherit;
-  padding:         0.5rem;
-  font-size:       inherit;
-  font-family:     $monospace;
+  border-bottom:              1px dashed #ccc;
+  border-left:                1px dashed #ccc;
+  border:                     none;
+  box-sizing:                 border-box;
+  font-family:                $monospace;
+  font-size:                  inherit;
+  line-height:                inherit;
+  padding:                    0.5rem;
+  width:                      100%;
 
   &:focus {
-    outline:  none;
-    background-color: #ffe;
+    background-color:         #ffe;
+    outline:                  none;
   }
 
   &.inline {
-    padding:       0rem;
+    padding:                  0rem;
   }
 }
 
 .manager {
-  .message, .messageIn {
+  .message,
+  .messageIn {
     @extend %text-input;
     @extend %manager-text-input;
   }
-}
-
-@mixin placeholder {
-  &::-webkit-input-placeholder {@content}
-  &:-moz-placeholder           {@content}
-  &::-moz-placeholder          {@content}
-  &:-ms-input-placeholder      {@content}
 }
 
 input[type="text"], textarea {

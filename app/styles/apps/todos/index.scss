@@ -1,1 +1,29 @@
 @import "env";
+
+$task-complete:            rgb(56,194,208);
+$task-complete-color:      darken($task-complete, 25%);
+
+.task {
+  .completed {
+    background-color:      rgba($task-complete, $background-hue-opacity);
+    color:                 rgba($task-complete-color, $background-text-opacity);
+    text-decoration:       line-through;
+
+    .checkbox:after {
+      content:             "[x]";
+    }
+
+  }
+
+  .checkbox:after {
+    content:               "[ ]";
+  }
+}
+
+.task .checkbox {
+  @include action-button;
+
+  &:after {
+    content:               "[ ]";
+  }
+}
