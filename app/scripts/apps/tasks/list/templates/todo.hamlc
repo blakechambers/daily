@@ -1,4 +1,4 @@
-- isCompleted = if @completed then "completed" else "not-completed"
+- isCompleted = if @completed then "inner completed" else "inner not-completed"
 
 %div{class: isCompleted }
   %aside

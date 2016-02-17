@@ -3,6 +3,11 @@
   display:                 block;
   position:                relative;
 
+  .inner {
+    padding-top:           $cs/2;
+    padding-bottom:        $cs/2;
+  }
+
   aside {
     position:              absolute;
     text-align:            right;
@@ -13,6 +18,11 @@
     left:                  $aside-width + $cs + $primary-width + $cs + $cs + (2 * $sub-padding);
     position:              absolute;
     top:                   0;
+
+    > * {
+      padding-top:           $cs/2;
+      padding-bottom:        $cs/2;
+    }
   }
 
   .module {
@@ -29,7 +39,6 @@
 
 #main-region {
   display:                 block;
-  margin-left:             $cs;
   overflow:                auto;
 }
 
@@ -45,6 +54,6 @@ hr.divider {
 .manager,
 .note,
 .new-todo {
-  @extend %row-element;
+  // @extend %row-element;
   @extend %destroyable;
 }
