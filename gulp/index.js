@@ -13,13 +13,3 @@ tasks.forEach(function(task) {
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
-
-// gulp.task('serve:dist', function() {
-//   browserSync({
-//     notify: false,
-//     port: 9000,
-//     server: {
-//       baseDir: [config.dist]
-//     }
-//   });
-// });
