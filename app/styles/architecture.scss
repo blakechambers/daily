@@ -1,11 +1,13 @@
+$sub-padding:    0.5rem;
+
 
 .wrap {
   display:                 block;
   position:                relative;
 
   .inner {
-    padding-top:           $cs/4;
-    padding-bottom:        $cs/4;
+    padding-top:           0.5rem;
+    padding-bottom:        0.5rem;
   }
 
   aside {
@@ -15,15 +17,16 @@
   }
 
   .tail {
-    left:                  $aside-width + $cs + $primary-width + $cs;
-    position:              absolute;
+    // left:                  $aside-width + $cs + $primary-width + $cs;
+    // position:              absolute;
+    display: none;
   }
 
   .module {
     margin-left:           $aside-width + $aside-padding;
     padding-left:          $sub-padding;
-    width:                 $primary-width;
     min-height:            1rem;
+    max-width:             40rem;
 
     &.collapse {
       padding-left:        0;
@@ -35,20 +38,59 @@
 #main-region {
   display:                 block;
   overflow:                auto;
+  background-color:        white;
+  height:                  100%;
+  box-sizing:              border-box;
 }
 
 hr.divider {
     background:            $silver;
     border:                0;
     height:                1px;
-    margin:                $cs 0 $cs ($aside-width + $aside-padding);
-    width:                 $primary-width;
+    margin:                $cs 0;
 }
 
 .task,
 .manager,
 .note,
 .new-todo {
-  // @extend %row-element;
   @extend %destroyable;
+
+  clear:                    both;
+}
+
+@media #{$small-only} {
+
+  body {
+    font-size: 12px !important;
+  }
+
+  .wrap {
+    aside {
+      width: 3.5rem;
+    }
+
+    .module {
+      margin-left: 3.5rem + 0.5rem;
+      padding-right: 1rem;
+    }
+  }
+
+}
+
+@media #{$medium-only} {
+
+  body {
+    font-size: 14px !important;
+  }
+
+  .wrap {
+    aside {
+      width: 5rem;
+    }
+
+    .module {
+      margin-left: 5rem + 1rem;
+    }
+  }
 }

@@ -1,9 +1,18 @@
-%section#notes
 %section#manager
-%hr.divider
+.wrap
+  .module
+    %hr.divider
 
 .wrap
   .module
     %h2 Today
 %section#new-todo
 %section#todos
+.wrap
+  .module
+    %hr.divider
+
+.wrap
+  .module
+    %h2 Poms
+%section#notes

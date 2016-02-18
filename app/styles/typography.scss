@@ -1,8 +1,8 @@
 @import "env";
 
+$carbon:                      #999999;
 $yellow:                      #FFFFF0;
 $yellow-darker:               darken($yellow, 5%);
-
 $line-height:                 1.5em;
 
 body {
@@ -12,7 +12,7 @@ body {
 }
 
 a {
-  color:                      #999;
+  color:                      $carbon;
   cursor:                     pointer;
   text-decoration:            underline;
 }
@@ -34,8 +34,8 @@ ol {
 }
 
 %text-input {
-  border-bottom:              1px dashed #ccc;
-  border-left:                1px dashed #ccc;
+  border-bottom:              1px dashed $silver;
+  border-left:                1px dashed $silver;
   border:                     none;
   box-sizing:                 border-box;
   font-family:                $monospace;
@@ -43,6 +43,7 @@ ol {
   line-height:                inherit;
   padding:                    0.5rem;
   width:                      100%;
+  max-width:                  45rem;
 
   &:focus {
     background-color:         $yellow-darker;

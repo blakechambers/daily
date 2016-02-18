@@ -18,4 +18,4 @@
   - if @isCurrentState("stopped")
     .message
   - if @isCurrentState("started")
-    %pre.message!= @message.replace(/\n/g, "<br/>")
+    .message!= @message.replace(/\n/g, "<br/>")
