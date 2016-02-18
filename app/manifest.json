@@ -1,11 +1,11 @@
 {
   "version": "0.1.0",
-  "short_name": "Push Demo",
-  "name": "Push Demo",
+  "short_name": "Daily",
+  "name": "Daily",
   "start_url": "/",
   "display": "standalone",
   "launch_path": "/",
-  "description": "example",
+  "description": "Daily",
   "developer": {
     "name": "Blake Chambers",
     "url": "https://github.com/blakechambers"
@@ -25,8 +25,8 @@
   },
   "locales": {
     "en": {
-      "name": "Demo name",
-      "description": "demo desc"
+      "name": "Daily",
+      "description": "Daily"
     }
   },
   "gcm_sender_id": "AIzaSyBFSo1D2LWEZhhz4ReaxZCj_lgbF2MnRUk",
